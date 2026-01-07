@@ -1,90 +1,141 @@
 # IronLog
 
-IronLog is a Django-based powerlifting tracker that lets athletes log workouts, monitor personal records, and visualize progress across squat, bench press, deadlift, and accessory exercises. The app pairs a structured backend with interactive dashboards so lifters can see training volume trends, totals, and Wilks scores at a glance.
+IronLog is a **Django-based web application** designed for **powerlifting and strength training athletes** to log workouts, track personal records (PRs), and visualize training progress over time. The application transforms raw training data—such as sets, repetitions, and loads—into meaningful performance metrics that help athletes understand and improve their training.
 
-## Features
-- **Workout logging:** Create workouts and record individual sets with weight, reps, distance, or duration.
-- **Exercise library:** Start with predefined compound lifts and add custom accessory movements; remove personal entries when needed.
-- **Personal records:** Automatically detect and store new PRs while reviewing workouts.
-- **Progress dashboard:** Chart weekly/monthly volume, per-exercise volume share, PR timelines, and powerlifting totals with Wilks calculations.
-- **Profile management:** Capture body metrics, training level, unit preference, and profile photos.
-- **CSV exports:** Download workout histories and personal records for analysis or backups.
+Rather than functioning as a simple workout log, IronLog models powerlifting-specific concepts such as the three competition lifts (squat, bench press, and deadlift), training volume, totals, and **Wilks score**, presenting this information through interactive dashboards and historical views.
 
-## Tech Stack
-- **Backend:** Python 3, Django
-- **Frontend:** Django templates, JavaScript, Chart.js (via static assets)
-- **Database:** SQLite (default; configurable to PostgreSQL/MySQL)
-- **Auth:** Django authentication (registration, login, logout)
+This project was developed as the **Capstone Project for CS50’s Web Programming with Python and JavaScript (CS50W)**.
 
-## Project Structure
-```
-manage.py
-fitness_project/         # Django project configuration
-workouts/                # Core app (models, views, templates, static assets)
-    models.py            # Profile, Exercise, Workout, WorkoutSet, PersonalRecord
-    views.py             # Authentication, dashboards, exports, and CRUD flows
-    forms.py             # Profile, exercise, workout, and set forms
-    urls.py              # App routes
-requirements.txt         # Python dependencies
-```
+---
 
-## Getting Started
+## Distinctiveness and Complexity
+
+### Distinctiveness
+
+This project is **substantially distinct** from all previous CS50W projects:
+
+- It is not a social network, auction site, wiki, or e-commerce platform.
+- It is a **domain-specific application** focused on powerlifting and strength training, with custom rules, metrics, and workflows.
+- It introduces functionality not present in prior projects, including:
+  - Automatic detection of **personal records**
+  - Calculation of **training volume** over time
+  - Computation of **Wilks scores** based on bodyweight and sex
+  - Analytical dashboards for long-term performance tracking
+
+Importantly, the project is not only defined by what it is *not*, but by what it *is*: a training analytics platform that helps athletes make data-driven decisions using historical workout data and sport-specific performance indicators.
+
+---
+
+### Complexity
+
+The project demonstrates significant complexity beyond basic CRUD operations:
+
+- **Advanced relational data modeling**, including relationships between:
+  - `User`, `Profile`, `Workout`, `WorkoutSet`, `Exercise`, and `PersonalRecord`
+- **Non-trivial backend logic**, such as:
+  - Aggregation of training volume by week and month
+  - Comparison of historical performances to identify new PRs
+  - Calculation of strength metrics and totals
+- **Dynamic frontend behavior**:
+  - Integration with **Chart.js** for data visualization
+  - Dashboards combining data from multiple database tables
+- **Additional features**:
+  - CSV export of workouts and PRs
+  - Profile image uploads
+  - Unit preferences (kg/lb)
+
+Together, these elements make IronLog significantly more complex than any individual project completed earlier in the course.
+
+---
+
+## Project Structure and File Descriptions
+
+Below is a detailed description of all files and directories to which I contributed code.
+
+### Root Directory
+
+- **`manage.py`**  
+  Django’s command-line utility for administrative tasks such as running the server, applying migrations, and executing tests.
+
+- **`requirements.txt`**  
+  Lists all Python dependencies required to run the application.
+
+---
+
+### `fitness_project/`
+
+The main Django project configuration directory.
+
+- **`__init__.py`**  
+  Marks the directory as a Python package.
+
+- **`settings.py`**  
+  Global project configuration, including installed apps, database setup, authentication, static files, and media configuration.
+
+- **`urls.py`**  
+  Defines the project’s root URL configuration and includes routes from the `workouts` app.
+
+- **`asgi.py` / `wsgi.py`**  
+  Entry points for asynchronous and synchronous deployment environments.
+
+---
+
+### `workouts/`
+
+The core application containing the majority of the project’s logic.
+
+- **`models.py`**  
+  Defines the primary data models:
+  - `Profile`: user metadata such as bodyweight, sex, units, and training level
+  - `Exercise`: compound and accessory exercises
+  - `Workout`: individual training sessions
+  - `WorkoutSet`: individual sets (weight, reps, duration, distance)
+  - `PersonalRecord`: best performances per exercise
+
+- **`views.py`**  
+  Contains backend logic for:
+  - User authentication (login, logout, registration)
+  - Creating and managing workouts
+  - Calculating volume, PRs, and statistics
+  - Preparing data for dashboards
+  - Exporting workout and PR data as CSV files
+
+- **`forms.py`**  
+  Django forms used for profiles, exercises, workouts, and workout sets.
+
+- **`urls.py`**  
+  Defines all application routes, including CRUD operations, dashboards, and export endpoints.
+
+- **`templates/workouts/`**  
+  HTML templates used to render all application pages.
+
+- **`static/workouts/`**  
+  Static assets such as JavaScript and CSS files, including Chart.js integration.
+
+- **`tests.py`**  
+  Automated tests validating core models and business logic.
+
+---
+
+## How to Run the Application
+
 ### Prerequisites
-- Python 3.10+
-- virtualenv (recommended)
-- SQLite (bundled) or another Django-supported database
 
-### Installation
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/xavieralves16/fitness_tracker.git
-   cd fitness_tracker
-      ```
-2. **Create and activate a virtual environment**
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate        # macOS/Linux
-   venv\Scripts\activate           # Windows
-   ```
-3. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. **Apply migrations**
-   ```bash
-   python manage.py makemigrations
-   python manage.py migrate
-   ```
-5. **Create a superuser (optional but recommended)**
-   ```bash
-   python manage.py createsuperuser
-   ```
-6. **Run the development server**
-   ```bash
-   python manage.py runserver
-   ```
-7. **Open the app** at [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+- Python 3.10 or higher  
+- `virtualenv` (recommended)  
+- SQLite (included by default with Django)
 
-## Configuration
-- Update database settings or static/media paths in `fitness_project/settings.py` as needed.
-- File uploads (e.g., profile pictures) require `MEDIA_ROOT` and `MEDIA_URL` to be configured when deploying.
-- Set `DEBUG=False` and configure `ALLOWED_HOSTS` for production deployments.
+### Installation and Setup
 
-## Running Tests
-Execute the Django test suite:
 ```bash
-python manage.py test
-```
+git clone https://github.com/xavieralves16/fitness_tracker.git
+cd fitness_tracker
+python3 -m venv venv
+source venv/bin/activate        # macOS/Linux
+venv\Scripts\activate           # Windows
+pip install -r requirements.txt
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
 
-## Data Exports
-- **Workouts:** `/export/workouts` streams workout histories with set details to CSV.
-- **Personal records:** `/export/prs` downloads PR data (exercise, best weight, date).
-
-## Roadmap Ideas
-- Add gamification elements (badges/achievements).
-- Integrate nutrition or wearable APIs for holistic tracking.
-- Expand stats to IPF points or other federations.
-- Ship a PWA-style mobile experience.
-
-## Author
-Built by Xavier Alves as a CS50W capstone project.
