@@ -19,7 +19,7 @@ This project is **substantially distinct** from all previous CS50W projects:
 - It introduces functionality not present in prior projects, including:
   - Automatic detection of **personal records**
   - Calculation of **training volume** over time
-  - Computation of **Wilks scores** based on bodyweight and sex
+  - Computation of **Wilks scores** based on bodyweight and height
   - Analytical dashboards for long-term performance tracking
 
 Importantly, the project is not only defined by what it is *not*, but by what it *is*: a training analytics platform that helps athletes make data-driven decisions using historical workout data and sport-specific performance indicators.
