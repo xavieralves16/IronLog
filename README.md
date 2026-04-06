@@ -139,3 +139,15 @@ python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
 
+<img width="1890" height="968" alt="image" src="https://github.com/user-attachments/assets/5faca3d0-c8f3-4bf3-9ebf-ee1eec687b7b" />
+<img width="1881" height="980" alt="image" src="https://github.com/user-attachments/assets/25a2b2b7-7ee7-45af-b68c-0f4cd3ae0c88" />
+<img width="1900" height="988" alt="image" src="https://github.com/user-attachments/assets/9b156be2-e799-4e4b-949c-d1bbba3d6d5d" />
+<img width="1878" height="1030" alt="image" src="https://github.com/user-attachments/assets/edbe380a-a83d-4a27-b69f-3dc89258ba2e" />
+<img width="1880" height="526" alt="image" src="https://github.com/user-attachments/assets/2cc07d60-ab50-47bf-b49d-a17b597c8844" />
+<img width="1879" height="976" alt="image" src="https://github.com/user-attachments/assets/48e3e7c0-ab49-4cae-96d1-46c7e06c4cf7" />
+<img width="1887" height="588" alt="image" src="https://github.com/user-attachments/assets/c30e5de7-8167-413a-a239-98074b8f1706" />
+
+
+
+
+
