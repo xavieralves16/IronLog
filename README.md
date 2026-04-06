@@ -138,6 +138,7 @@ python manage.py makemigrations
 python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
+```
 
 <img width="1890" height="968" alt="image" src="https://github.com/user-attachments/assets/5faca3d0-c8f3-4bf3-9ebf-ee1eec687b7b" />
 <img width="1881" height="980" alt="image" src="https://github.com/user-attachments/assets/25a2b2b7-7ee7-45af-b68c-0f4cd3ae0c88" />
